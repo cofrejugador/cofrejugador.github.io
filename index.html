@@ -1,0 +1,537 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+
+  <title>CofreJugador ahora es ChestPlayer</title>
+
+  <meta
+    name="description"
+    content="CofreJugador ha cambiado de nombre de dominio. Continúa jugando en nuestro nuevo sitio oficial, ChestPlayer."
+  >
+
+  <meta name="theme-color" content="#07090f">
+
+  <style>
+    :root {
+      --bg: #07090f;
+      --bg-soft: #0d111b;
+      --panel: rgba(18, 22, 33, 0.76);
+      --panel-border: rgba(255, 213, 112, 0.16);
+
+      --gold: #f2c45e;
+      --gold-light: #ffe5a0;
+      --gold-dark: #a56a18;
+
+      --text: #f8f8f6;
+      --muted: #aeb4c0;
+
+      --radius: 24px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      min-height: 100%;
+      background: var(--bg);
+    }
+
+    body {
+      min-height: 100vh;
+      margin: 0;
+      overflow-x: hidden;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      font-family:
+        Inter,
+        ui-sans-serif,
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+
+      color: var(--text);
+
+      background:
+        radial-gradient(
+          circle at 50% -10%,
+          rgba(242, 196, 94, 0.13),
+          transparent 35%
+        ),
+        radial-gradient(
+          circle at 10% 80%,
+          rgba(50, 81, 145, 0.11),
+          transparent 32%
+        ),
+        linear-gradient(
+          145deg,
+          #05070b,
+          #0b0f18 50%,
+          #07090f
+        );
+    }
+
+    /* Ambient arena glow */
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+
+      background-image:
+        linear-gradient(
+          rgba(255,255,255,.018) 1px,
+          transparent 1px
+        ),
+        linear-gradient(
+          90deg,
+          rgba(255,255,255,.018) 1px,
+          transparent 1px
+        );
+
+      background-size: 48px 48px;
+
+      mask-image:
+        linear-gradient(
+          to bottom,
+          rgba(0,0,0,.7),
+          transparent
+        );
+    }
+
+    .page {
+      position: relative;
+      z-index: 1;
+
+      width: 100%;
+      max-width: 860px;
+
+      padding: 36px 20px;
+    }
+
+    .card {
+      position: relative;
+      overflow: hidden;
+
+      padding:
+        clamp(36px, 7vw, 72px)
+        clamp(24px, 7vw, 68px);
+
+      text-align: center;
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(20, 25, 38, .92),
+          rgba(9, 12, 19, .88)
+        );
+
+      border: 1px solid var(--panel-border);
+      border-radius: var(--radius);
+
+      box-shadow:
+        0 35px 90px rgba(0, 0, 0, .5),
+        inset 0 1px rgba(255,255,255,.04);
+
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+
+      width: 420px;
+      height: 420px;
+
+      left: 50%;
+      top: -300px;
+
+      transform: translateX(-50%);
+
+      background:
+        radial-gradient(
+          circle,
+          rgba(255, 211, 105, .22),
+          transparent 67%
+        );
+
+      pointer-events: none;
+    }
+
+    /* Zeus-style lightning mark */
+
+    .bolt {
+      width: 54px;
+      height: 68px;
+
+      margin: 0 auto 22px;
+
+      filter:
+        drop-shadow(
+          0 0 16px rgba(242,196,94,.35)
+        );
+    }
+
+    .bolt svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    .old-brand {
+      margin-bottom: 9px;
+
+      color: var(--muted);
+
+      font-size: .78rem;
+      font-weight: 800;
+
+      letter-spacing: .19em;
+      text-transform: uppercase;
+    }
+
+    .brand {
+      margin: 0;
+
+      font-size:
+        clamp(2.7rem, 10vw, 5.2rem);
+
+      font-weight: 900;
+      line-height: .95;
+
+      letter-spacing: -.055em;
+    }
+
+    .brand span {
+      background:
+        linear-gradient(
+          135deg,
+          var(--gold-light),
+          var(--gold),
+          #c88a27
+        );
+
+      background-clip: text;
+      -webkit-background-clip: text;
+
+      color: transparent;
+    }
+
+    .divider {
+      width: 56px;
+      height: 2px;
+
+      margin: 30px auto;
+
+      background:
+        linear-gradient(
+          90deg,
+          transparent,
+          var(--gold),
+          transparent
+        );
+    }
+
+    h1 {
+      max-width: 650px;
+
+      margin:
+        0 auto
+        18px;
+
+      font-size:
+        clamp(1.55rem, 5vw, 2.5rem);
+
+      line-height: 1.13;
+      letter-spacing: -.025em;
+    }
+
+    .description {
+      max-width: 600px;
+
+      margin:
+        0 auto
+        10px;
+
+      color: var(--muted);
+
+      font-size:
+        clamp(1rem, 2.4vw, 1.12rem);
+
+      line-height: 1.7;
+    }
+
+    .description strong {
+      color: #fff;
+      font-weight: 700;
+    }
+
+    .domain-change {
+      max-width: 560px;
+
+      margin:
+        25px auto
+        0;
+
+      padding: 15px 18px;
+
+      background:
+        rgba(242,196,94,.055);
+
+      border:
+        1px solid
+        rgba(242,196,94,.13);
+
+      border-radius: 13px;
+
+      color: #d8dbe1;
+
+      font-size: .94rem;
+      line-height: 1.55;
+    }
+
+    .domain-change strong {
+      color: var(--gold-light);
+    }
+
+    .actions {
+      margin-top: 34px;
+    }
+
+    .primary-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+
+      min-height: 56px;
+
+      padding: 0 29px;
+
+      border-radius: 13px;
+
+      background:
+        linear-gradient(
+          135deg,
+          #ffe294,
+          #e7ad3d
+        );
+
+      color: #161006;
+
+      font-size: 1rem;
+      font-weight: 850;
+
+      text-decoration: none;
+
+      box-shadow:
+        0 10px 35px
+        rgba(224, 164, 48, .18);
+
+      transition:
+        transform .18s ease,
+        box-shadow .18s ease,
+        filter .18s ease;
+    }
+
+    .primary-button:hover {
+      transform: translateY(-2px);
+
+      filter: brightness(1.05);
+
+      box-shadow:
+        0 15px 42px
+        rgba(224, 164, 48, .27);
+    }
+
+    .primary-button:active {
+      transform: translateY(0);
+    }
+
+    .primary-button:focus-visible {
+      outline:
+        3px solid
+        rgba(255, 225, 148, .6);
+
+      outline-offset: 4px;
+    }
+
+    .arrow {
+      font-size: 1.25rem;
+      line-height: 1;
+    }
+
+    .new-domain {
+      margin-top: 18px;
+
+      color: #7f8795;
+
+      font-size: .78rem;
+
+      letter-spacing: .05em;
+    }
+
+    footer {
+      margin-top: 25px;
+
+      text-align: center;
+
+      color: #666e7b;
+
+      font-size: .76rem;
+    }
+
+    @media (max-width: 520px) {
+      .page {
+        padding: 18px 14px;
+      }
+
+      .card {
+        border-radius: 19px;
+      }
+
+      .primary-button {
+        width: 100%;
+      }
+
+      .domain-change {
+        text-align: left;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        transition: none !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="page">
+
+    <main class="card">
+
+      <div class="bolt" aria-hidden="true">
+        <svg
+          viewBox="0 0 64 80"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <defs>
+            <linearGradient
+              id="gold"
+              x1="0"
+              y1="0"
+              x2="1"
+              y2="1"
+            >
+              <stop
+                offset="0"
+                stop-color="#fff0b5"
+              />
+              <stop
+                offset=".45"
+                stop-color="#f2c45e"
+              />
+              <stop
+                offset="1"
+                stop-color="#b9771e"
+              />
+            </linearGradient>
+          </defs>
+
+          <path
+            d="
+              M39 2
+              L13 43
+              H29
+              L22 78
+              L53 33
+              H36
+              Z
+            "
+            fill="url(#gold)"
+          />
+        </svg>
+      </div>
+
+      <div class="old-brand">
+        CofreJugador
+      </div>
+
+      <div class="brand">
+        Chest<span>Player</span>
+      </div>
+
+      <div class="divider"></div>
+
+      <h1>
+        CofreJugador tiene un nuevo hogar.
+      </h1>
+
+      <p class="description">
+        Hemos cambiado nuestro
+        <strong>nombre de dominio</strong>.
+        CofreJugador continúa ahora en
+        <strong>ChestPlayer.us</strong>.
+      </p>
+
+      <p class="description">
+        Encontrarás la plataforma de ChestPlayer
+        en nuestro nuevo dominio, incluyendo la
+        versión en español.
+      </p>
+
+      <div class="domain-change">
+        <strong>Importante:</strong>
+        CofreJugador.com ya no es el dominio
+        principal de la plataforma. Nuestro nuevo
+        sitio oficial es
+        <strong>ChestPlayer.us</strong>.
+      </div>
+
+      <div class="actions">
+
+        <!--
+          Change this URL only if ChestPlayer uses
+          a different Spanish locale route.
+        -->
+
+        <a
+          class="primary-button"
+          href="https://chestplayer.us/?lang=es"
+          rel="noopener"
+        >
+          Ir a ChestPlayer en español
+          <span class="arrow" aria-hidden="true">→</span>
+        </a>
+
+      </div>
+
+      <div class="new-domain">
+        CHESTPLAYER.US
+      </div>
+
+    </main>
+
+    <footer>
+      CofreJugador · ChestPlayer
+    </footer>
+
+  </div>
+
+</body>
+</html>
